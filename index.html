@@ -92,6 +92,28 @@
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
+
+ <!-- Image Modal -->
+  <div id="image-modal"
+      class="fixed inset-0 hidden z-50 flex items-center justify-center">
+
+    <!-- Blurred background -->
+    <div id="modal-backdrop"
+        class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
+
+    <!-- Image container -->
+    <div class="relative z-10">
+      <button id="close-image"
+              class="absolute -top-4 -right-4 bg-white text-pink-600 rounded-full w-9 h-9 font-bold shadow-lg">
+        ✕
+      </button>
+
+      <img src="MyValentine.png"
+          alt="My Valentine"
+          class="max-w-[90vw] max-h-[90vh] rounded-2xl shadow-2xl bounce-in">
+    </div>
+  </div>
+
  <body class="h-full font-quicksand">
   <div id="app" class="h-full w-full overflow-auto relative" style="background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 50%, #f48fb1 100%);"><!-- Floating Hearts Background -->
    <div id="hearts-bg" class="absolute inset-0 overflow-hidden pointer-events-none"></div><!-- Main Content -->
@@ -122,13 +144,11 @@
      <div class="text-7xl mb-4 bounce-in">
       🎉💕🎉
      </div><!-- Success Message -->
-      <a href="MyValentine.png">
-        <h1 id="success-title"
-            class="font-pacifico text-4xl md:text-5xl text-pink-800 mb-4 bounce-in underline"
-            style="animation-delay: 0.2s; cursor: pointer;">
-          Yay!
-        </h1>
-      </a>
+      <h1 id="success-title"
+        class="font-pacifico text-4xl md:text-5xl text-pink-800 mb-4 bounce-in underline cursor-pointer"
+        style="animation-delay: 0.2s;">
+        Yay!
+     </h1>
      <p id="success-subtitle" class="text-xl md:text-2xl text-pink-700 mb-8 bounce-in" style="animation-delay: 0.4s;">I knew you would choose Yes! 💖</p><!-- Celebration Options -->
      <div class="bounce-in" style="animation-delay: 0.6s;">
       <h2 class="font-pacifico text-2xl md:text-3xl text-pink-800 mb-6">How do you want to celebrate Valentine's? 🌹</h2>
@@ -352,6 +372,27 @@
     setupYesButton();
     setupCelebrationChoices();
     onConfigChange(config);
+
+  // Yay image modal logic
+const yayTitle = document.getElementById('success-title');
+const imageModal = document.getElementById('image-modal');
+const modalBackdrop = document.getElementById('modal-backdrop');
+const closeImage = document.getElementById('close-image');
+
+yayTitle.addEventListener('click', () => {
+  imageModal.classList.remove('hidden');
+});
+
+// Close on X
+closeImage.addEventListener('click', () => {
+  imageModal.classList.add('hidden');
+});
+
+// Close on background click
+modalBackdrop.addEventListener('click', () => {
+  imageModal.classList.add('hidden');
+});
+
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c7f37a854663c5e',t:'MTc3MDA5MzI4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
