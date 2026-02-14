@@ -114,6 +114,11 @@
     </div>
   </div>
 
+  <audio id="yay-audio" preload="auto">
+      <source src="Perfect.mp3" type="audio/mpeg">
+  </audio>
+
+
  <body class="h-full font-quicksand">
   <div id="app" class="h-full w-full overflow-auto relative" style="background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 50%, #f48fb1 100%);"><!-- Floating Hearts Background -->
    <div id="hearts-bg" class="absolute inset-0 overflow-hidden pointer-events-none"></div><!-- Main Content -->
@@ -391,6 +396,29 @@
     // Close on background click
     modalBackdrop.addEventListener('click', () => {
       imageModal.classList.add('hidden');
+    });
+
+    // Audio element
+    const yayAudio = document.getElementById('yay-audio');
+
+    // When clicking Yay
+    yayTitle.addEventListener('click', () => {
+      imageModal.classList.remove('hidden');
+      
+      yayAudio.currentTime = 0; // restart from beginning
+      yayAudio.play();
+    });
+
+    // Close on X
+    closeImage.addEventListener('click', () => {
+      imageModal.classList.add('hidden');
+      yayAudio.pause();
+    });
+
+    // Close on background click
+    modalBackdrop.addEventListener('click', () => {
+      imageModal.classList.add('hidden');
+      yayAudio.pause();
     });
 
   </script>
